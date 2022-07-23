@@ -28,14 +28,6 @@ public class Patient {
         this.height = height;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
@@ -65,7 +57,13 @@ public class Patient {
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        if (phoneNumber.length() > 8){
+            System.out.println("El numero telefonico debe tener 8 digitos");
+
+        }else {
+            this.phoneNumber = phoneNumber;
+        }
+
     }
 
     public String getBirthday() {
@@ -75,8 +73,6 @@ public class Patient {
     public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
-
-
 
     public String getBlood() {
         return blood;

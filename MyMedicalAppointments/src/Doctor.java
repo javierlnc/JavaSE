@@ -1,8 +1,8 @@
 public class Doctor {
     static int id = 0; //Autoincrement
-    String name;
-    String speciality;
-    String email;
+    private String name;
+    private String speciality;
+    private String email;
     /**
      * Descripción: inprime el nombre del doctor
      * */
@@ -12,10 +12,28 @@ public class Doctor {
         this.name = name;
         this.speciality = speciality;
     }
-    public  void showID(){
-        System.out.println("el ID es: "+ id);
+
+    public String getName() {
+        return name;
     }
-    public void showName(){
-        System.out.println(name);
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSpeciality() {
+        return speciality;
+    }
+
+    public void setSpeciality(String speciality) {
+        this.speciality = speciality;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
