@@ -1,10 +1,16 @@
 package Ui;
 
+import model.Doctor;
+import model.Patient;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UIMenu {
     public static final String[] MONTHS = {"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto",
                                             "Septiembre","Octubre","Noviembre","Diciembre"};
+    public static Doctor doctorLogged;
+    public static Patient patientLogged;
     public static void showMenu(){
         System.out.println("Welcome to My Appointments");
         System.out.println("Selecciona la opcion deseada");
@@ -20,10 +26,13 @@ public class UIMenu {
             switch (response){
                 case 1:
                     System.out.println("Doctor");
+                    response = 0;
+                    autUser(1);
                     break;
                 case 2:
-                    System.out.println("Paciente");
-                    showPatientMenu();
+                    System.out.println("Doctor");
+                    response = 0;
+                    autUser(2);
                     break;
                 case 0:
                     System.out.println("Thank you for you visit");
@@ -39,7 +48,7 @@ public class UIMenu {
         int response = 0;
         do {
             System.out.println("\n\n");
-            System.out.println("Patient");
+            System.out.println("model.Patient");
             System.out.println("1. Book an appointment");
             System.out.println("2. My appointments");
             System.out.println("0. Return");
@@ -50,9 +59,7 @@ public class UIMenu {
             switch (response){
                 case 1:
                     System.out.println("::Book an appoinment");
-                    for (int i = 1; i < 4; i++) {
-                        System.out.println(i + ". "+MONTHS[i-1]);
-                    }
+
                     break;
                 case  2:
                     System.out.println("::My Appointments");
@@ -63,5 +70,40 @@ public class UIMenu {
             }
         }while (response !=0);
     }
+    private  static  void  autUser(int userType){
+        ArrayList<Doctor> doctors = new ArrayList<>();
+        doctors.add(new Doctor("Alejandro Castro","alejandro@gmail.com"));
+        doctors.add(new Doctor("Daniel Calderon","daniel@gmail.com"));
+        doctors.add(new Doctor("Miriam Ruiz","miriam@gmail.com"));
+        ArrayList<Patient> patients = new ArrayList<>();
+        patients.add(new Patient("Alvaro Leon","alvaro@gmail.com"));
+        patients.add(new Patient("Carlos Martinez","carlos@gmail.com"));
+        patients.add(new Patient("Daniela Camacho","daniela@gmail.com"));
 
+        boolean emailCorrect = false;
+        do {
+            System.out.println("Insert you email: ");
+            Scanner sc = new Scanner(System.in);
+            String email= sc.nextLine();
+            if (userType == 1){
+                for(Doctor d: doctors){
+                    if (d.getEmail().equals(email)){
+                        emailCorrect=true;
+                        doctorLogged = d;
+                    }
+                }
+            }
+            if (userType == 2){
+                for(Patient p: patients){
+                    if (p.getEmail().equals(email)){
+                        emailCorrect=true;
+                        patientLogged = p;
+                    }
+                }
+            }
+
+        }while(!emailCorrect);
+
+
+    }
 }
